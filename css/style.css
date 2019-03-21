@@ -1,0 +1,146 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-Thin.ttf') ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat-ExtraLight.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+header nav .container-fluid {
+    font-size: 3rem;
+    font-weight: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header nav a, header nav a:link {
+    color: black;
+    text-decoration: none;
+}
+
+header nav a:hover, header nav span{
+    color: black;
+    font-size: 2.9835rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer span {
+    position: relative;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+main {
+    padding-top: 50px;
+    padding-bottom: 200px;
+
+}
+
+footer {
+    background-image: url('bg-footer.jpg');
+    background-size: cover;
+    background-position: bottom;
+    padding-top: 10px;
+}
+
+#copyright {
+    background-image: url('bg-footer.jpg');
+    background-size: 100%;
+    background-position: top left;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    position: relative;
+    /* background-color: gray; */
+}
+
+.main-container {
+    min-height: 100vh; 
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer {
+    margin-bottom: 10px;
+}
+
+footer button, textarea {
+    margin-top: 5px;
+}
+
+footer textarea, input {
+    outline: none;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+footer a, footer a:link {
+    display:inline-block;
+    padding: 5px;
+    color: black;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: black;
+    background-color: lightgrey;
+}
+
+/* .col {
+    border: 1px solid black;
+} */
+
+footer .form-group {
+    padding-top: 15px; 
+}
+
+.log-reg-form {
+    position: absolute;
+    display: block;
+    top: 38%;
+    left: 50%;
+
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.log-reg-form input::placeholder {
+    text-align: center;
+}
+
+.log-reg-form input {
+    text-align: center;
+}

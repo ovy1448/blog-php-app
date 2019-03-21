@@ -16,8 +16,8 @@
                     <div class="col" >
                         <a href="http://localhost/blog-php-app/index.php">Blog</a>
                     </div>
-                    <div class="col text-right col-md-auto" >
-                        <a href="http://localhost/blog-php-app/register.php">Register</a>|<a href="http://localhost/blog-php-app/login.php">Login</a>
+                    <div class="col text-left col-md-auto" >
+                        <span>Register</span>
                     </div>
                 </div>
             </div>
