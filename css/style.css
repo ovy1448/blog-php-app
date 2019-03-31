@@ -124,7 +124,7 @@ footer .form-group {
 .log-reg-form {
     position: absolute;
     display: block;
-    top: 38%;
+    top: 30%;
     left: 50%;
 
     -webkit-transform: translateX(-50%);

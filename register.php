@@ -1,14 +1,23 @@
 <?php include('inc/header-register.php');?>
+<?php include('server.php') ?>
 
-<form class="log-reg-form">
+<form method="post" action="register.php" class="log-reg-form">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Username">
+        <input name="username" type="text" class="form-control" placeholder="Username" value="<?php echo $username; ?>">
     </div>
     <div class="form-group">
-        <input type="email" class="form-control" placeholder="Email">
+        <input name="email" type="email" class="form-control" placeholder="Email" value="<?php echo $email; ?>">
     </div>
     <div class="form-group">
-        <input class="form-control" type="password" placeholder="Password">
+        <input class="form-control" type="password" name="password_1" placeholder="Password">
     </div>
-    <button type="submit" class="btn btn-dark">Next</button>
+    <div class="form-group">
+        <input class="form-control" type="password" name="password_2" placeholder="Password 2">
+    </div>
+    <button type="submit" class="btn btn-dark" name="reg_user">Next</button>
+    <h6>
+        <p>
+            Already a member? <a href="login.php">Sign in</a>
+        </p>
+    </h6>
 </form>
