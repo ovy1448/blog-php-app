@@ -34,7 +34,7 @@
                     </div>
                 <div id="copyright" class="row">
                     <div class="text-center col">
-                        <span class="">© <?php echo date("Y");?> Daniel Ovári </span>
+                        <span>© <?php echo date("Y");?> Daniel Ovári </span>
                     </div>
                 </div>    
             </div> 

@@ -1,4 +1,4 @@
-<?php include('inc/header-register.php');?>
+<?php include('inc/header.php');?>
 <?php include('server.php') ?>
 
 <form method="post" action="register.php" class="log-reg-form">
