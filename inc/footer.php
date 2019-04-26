@@ -1,35 +1,19 @@
         <footer>
             <div class="container-fluid">
-                <div id="footer" class="row align-items-center">
-                    <div class="col">
-                        <form action="">
-                            <div class="form-group">
-                                <input class="form-control" type="email" name="" placeholder="Your e-mail">
-                                <textarea class="form-control" rows=3 placeholder="Your message"></textarea>
-                                <button type="submit" class="btn btn-secondary btn-sm btn-block">Send</button>
-                            </div>
-                        </form>
+                <div id="footer" class="row">
+                    <div class="col" id="footer-nav">
+                        <a class="footer-nav-link" href="http://localhost/blog-php-app/about.php">About</a><br>
+                        <a class="footer-nav-link" href="http://localhost/blog-php-app/privacy.php">Privacy</a><br>
+                        <a class="footer-nav-link" href="http://localhost/blog-php-app/contact.php">Contact</a><br>
+                        <a class="footer-nav-link" href="http://localhost/blog-php-app/login.php">Admin login</a>
                     </div>
-                    <div class="col">
-                        <div class="row">
-                            <div class="col">
-                                1
-                            </div>
-                            <div class="col">
-                                1
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                1
-                            </div>
-                            <div class="col">
-                                1
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col text-center align-items-center">
-                        <a href="#">Admin login</a>
+                    <div class="col text-left">
+                        <span id="newsletter-text">Newsletter</span><br>
+                        Sign up to our newsletter and stay up to date.<br>
+                        <input type="email" name="" id="newsletter-input" placeholder="Enter Your Email"><i class="arrow"></i><br>
+                        <a href="https://facebook.com" target="_blank" class="fab fa-facebook-square fa-3x"></a>
+                        <a href="https://github.com" target="_blank" class="fab fa-github-square fa-3x"></a>
+                        <a href="https://www.linkedin.com/" target="_blank" class="fab fa-linkedin fa-3x"></a>
                     </div>
                     </div>
                 <div id="copyright" class="row">
