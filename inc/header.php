@@ -16,6 +16,7 @@
                 <div class="row">
                     <div class="col" >
                         <a class="nav-btn" href="http://localhost/blog-php-app/index.php">Blog</a>
+                        <a href="<?php echo ROOT_URL; ?>addpost.php">Add Post</a>
                     </div>
                     <div class="col text-right col-md-auto" >
                         <?php
