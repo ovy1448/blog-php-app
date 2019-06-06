@@ -1,2 +1,2 @@
 <?php
-    $db = mysqli_connect('localhost', 'root', '123456', 'blog-php-app');
+    $conn = mysqli_connect('localhost', 'root', '123456', 'blog-php-app');

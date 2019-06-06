@@ -21,8 +21,8 @@
                     <div class="col text-right col-md-auto" >
                         <?php
                             if (isset($_SESSION['email'])){
-                                echo '<div id="welcome">Welcome <strong>'.$_SESSION['email'].'</strong>
-                                <br><a id="logout" href="index.php?logout=1">Logout</a></div>';
+                                echo '<div id="welcome">Hi, '.$_SESSION['email'].'
+                                <a id="logout" href="index.php?logout=1">Logout</a></div>';
                             } 
                             elseif (stripos($_SERVER['REQUEST_URI'], 'login.php')){
                                 echo '<span class="nav-btn-sel">Login</span>';

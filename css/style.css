@@ -12,32 +12,17 @@
     font-style: normal;
 }
 
-.nav-btn, .nav-btn:link {
-    color: black;
-    text-decoration: none;
+*, *:before, *:after {
+    box-sizing: border-box;
 }
 
-#logout, #logout:link {
-    color: red;
-    text-decoration: none;
+html, body {
+    height: 100%;
 }
 
-.nav-btn:hover {
-    color: black;
-    font-size: 2.9835rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.nav-btn-sel {
-    font-weight: bold;
-}
-
-#logout:hover {
-    color: darkred;
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+body {
+    display: flex;
+    flex-direction: column;
 }
 
 .log-reg-form {
@@ -74,12 +59,6 @@
     background-size: 100%;
     background-position: top left;
     margin-top: 8px;
-}
-
-#welcome {
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
 }
 
 .footer-nav-link, .footer-nav-link:link {
@@ -149,31 +128,11 @@
 }
 
 .fa-github-square:hover {
-color: #211F1F;
+    color: #211F1F;
 }
 
 .fa-linkedin:hover {
     color: #0077B5;
-}
-
-/* .col {
-    border: 5px solid red;
-} */
-
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-/* .main-container {
-    border: 5px solid blue;
-}
-
-footer, header {
-    border: 5px solid green;
-} */
-
-.main-container {
-    height: auto; 
-    display: block;
-    position: relative;
 }
 
 footer {
@@ -188,19 +147,64 @@ footer {
     display: block;
 }
 
-*, *:before, *:after {
-    box-sizing: border-box;
+#footer {
+    flex-shrink: 0;
 }
 
-html {
-    height: 100%;
-    /* background-color: gray; */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+/* .col {
+    border: 5px solid red;
+} */
+
+/* .main-container {
+    border: 5px solid blue;
 }
 
-body {
+footer, header {
+    border: 5px solid green;
+} */
+
+.nav-btn, .nav-btn:link {
+    color: black;
+    text-decoration: none;
+}
+
+#logout, #logout:link {
+    color: red;
+    text-decoration: none;
+}
+
+.nav-btn:hover {
+    color: black;
+    font-size: 2.9835rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-btn-sel {
+    font-weight: bold;
+}
+
+#logout:hover {
+    color: darkred;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#welcome {
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+
+}
+
+.main-container {
+    height: auto; 
+    display: block;
     position: relative;
-    margin: 0;
-    min-height: 100%;
+    flex: 1 0 auto;
 }
 
 header .container-fluid {
@@ -213,7 +217,7 @@ header .container-fluid {
     width: 150px;
     height: 300px;
     overflow: hidden;
-    border: 1px solid red;
+    background-color: lightgray;
     width: 100% !important;
     height: 200px;
     page-break-inside: avoid;
@@ -228,7 +232,6 @@ header .container-fluid {
     column-gap:           5px;  
 
     border: 1px solid green;
-    
 
-    
+    margin-bottom: 15px;
 }

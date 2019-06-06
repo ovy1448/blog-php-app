@@ -10,26 +10,16 @@
   require('config/config.php');
   require('config/db.php');
   $query = 'SELECT * FROM posts ORDER BY created_at DESC';
-  $result = mysqli_query($db, $query);
+  $result = mysqli_query($conn, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
   mysqli_free_result($result);
-  mysqli_close($db);
+  mysqli_close($conn);
   
 ?>
 
 
 <?php include('inc/header.php');?> 
 <main class="main-container">
-  <?php if (isset($_SESSION['success'])) : ?>
-    <div class="error success" >
-      <h3>
-        <?php 
-          echo $_SESSION['success']; 
-          unset($_SESSION['success']);
-        ?>
-      </h3>
-    </div>
-  <?php endif ?>
   <div class="container" id="posts">
     <?php foreach($posts as $post) : ?>
       <div class="main-posts">

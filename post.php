@@ -11,38 +11,28 @@
   require('config/db.php');
 
   if(isset($_POST['delete'])){
-    $delete_id = mysqli_escape_string($db, $_POST['delete_id']);
+    $delete_id = mysqli_escape_string($conn, $_POST['delete_id']);
     
   $query = "DELETE FROM posts WHERE id = {$delete_id}";
 
-      if(mysqli_query($db, $query)){
+      if(mysqli_query($conn, $query)){
           header('Location: '.ROOT_URL.'');
       } else {
-          echo 'ERROR'. mysqli_error($db);
+          echo 'ERROR'. mysqli_error($conn);
       }
   }
 
-  $id = mysqli_real_escape_string($db, $_GET['id']);
+  $id = mysqli_real_escape_string($conn, $_GET['id']);
   $query = 'SELECT * FROM posts WHERE id='.$id;
-  $result = mysqli_query($db, $query);
+  $result = mysqli_query($conn, $query);
   $post = mysqli_fetch_assoc($result);
   mysqli_free_result($result);
-  mysqli_close($db);
+  mysqli_close($conn);
   
 ?>
 
 <div class="main-container">
     <?php include('inc/header.php');?>
-    <?php if (isset($_SESSION['success'])) : ?>
-      <div class="error success" >
-      	<h3>
-          <?php 
-          	echo $_SESSION['success']; 
-          	unset($_SESSION['success']);
-          ?>
-      	</h3>
-      </div>
-    <?php endif ?>
       <a href="<?php echo ROOT_URL; ?>">Back</a>
       <h1><?php echo $post['title']; ?></h1>
       <small>Created on <?php echo $post['created_at']; ?> by <?php echo $post['author']; ?></small>
