@@ -16,18 +16,30 @@
                 <div class="row">
                     <div class="col" >
                         <a class="nav-btn" href="http://localhost/blog-php-app/index.php">Blog</a>
-                        <a href="<?php echo ROOT_URL; ?>addpost.php">Add Post</a>
+                        
                     </div>
-                    <div class="col text-right col-md-auto" >
+                    <div class="col text-right" >
                         <?php
                             if (isset($_SESSION['email'])){
-                                echo '<div id="welcome">Hi, '.$_SESSION['email'].'
-                                <a id="logout" href="index.php?logout=1">Logout</a></div>';
+                                echo '
+                                <div class="dropdown" id="hi">
+                                    Hi, <a class="name dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <strong class="user-name">'.$_SESSION['email'].'</strong>
+                                    </a>
+                                    <div class="line"></div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" id="add_post" href="addpost.php">Add Post</a>
+                                        <a class="dropdown-item" id="my_posts" href="allposts.php">My Posts</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" id="logout" href="index.php?logout=1">Logout</a>
+                                    </div>
+                                </div>
+                                ';
                             } 
                             elseif (stripos($_SERVER['REQUEST_URI'], 'login.php')){
                                 echo '<span class="nav-btn-sel">Login</span>';
                             }
-                            elseif(stripos($_SERVER['REQUEST_URI'], 'register.php')){
+                            elseif (stripos($_SERVER['REQUEST_URI'], 'register.php')){
                                 echo '<span class="nav-btn-sel">Register</span>';
                             } else {
                                 echo '<a class="nav-btn" href="http://localhost/blog-php-app/register.php">Register</a>|<a class="nav-btn" href="http://localhost/blog-php-app/login.php">Login</a>';

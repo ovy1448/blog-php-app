@@ -25,34 +25,7 @@ body {
     flex-direction: column;
 }
 
-.log-reg-form {
-    position: absolute;
-    display: block;
-    top: 30%;
-    left: 50%;
-
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-
-    text-align: center;
-    font-size: 1.2rem;
-}
-
-.log-reg-form input::placeholder {
-    text-align: center;
-}
-
-.log-reg-form input {
-    text-align: center;
-    outline: none;
-    border: none !important;
-    -webkit-box-shadow: none !important;
-    -moz-box-shadow: none !important;
-    box-shadow: none !important;
-}
+/* FOOTER */
 
 #copyright {
     background-image: url('bg-footer.jpg');
@@ -68,7 +41,7 @@ body {
     color: black;
     text-decoration: none;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: normal;
 }
 
 #newsletter-text, #newsletter-input {
@@ -86,7 +59,7 @@ body {
     outline: 0;
     background: transparent;
     border-bottom: 1px solid black;
-    font-weight: 400;
+    font-weight: normal;
     font-size: 1.1rem;
     margin-top: 15px;
 }
@@ -143,7 +116,6 @@ footer {
     position: relative;
     bottom: 0;
     width: 100%;
-    z-index: 0;
     display: block;
 }
 
@@ -151,27 +123,8 @@ footer {
     flex-shrink: 0;
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-/* .col {
-    border: 5px solid red;
-} */
-
-/* .main-container {
-    border: 5px solid blue;
-}
-
-footer, header {
-    border: 5px solid green;
-} */
-
 .nav-btn, .nav-btn:link {
     color: black;
-    text-decoration: none;
-}
-
-#logout, #logout:link {
-    color: red;
     text-decoration: none;
 }
 
@@ -179,38 +132,48 @@ footer, header {
     color: black;
     font-size: 2.9835rem;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
 }
 
-.nav-btn-sel {
-    font-weight: bold;
+/* FOOTER */
+/* LOGREG */
+
+.log-reg-form {
+    position: absolute;
+    display: block;
+    top: 30%;
+    left: 50%;
+
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+
+    text-align: center;
+    font-size: 1.2rem;
 }
 
-#logout:hover {
-    color: darkred;
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+.log-reg-form input::placeholder {
+    text-align: center;
 }
 
-#welcome {
-    font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2rem;
-
+.log-reg-form input {
+    text-align: center;
+    outline: none;
+    border: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
 }
+
+/* LOGREG */
+/* MAIN */
 
 .main-container {
     height: auto; 
     display: block;
     position: relative;
     flex: 1 0 auto;
-}
-
-header .container-fluid {
-    font-size: 3rem;
-    font-weight: normal;
-    font-family: 'Montserrat', sans-serif;
 }
 
 .main-posts {
@@ -235,3 +198,71 @@ header .container-fluid {
 
     margin-bottom: 15px;
 }
+
+/* MAIN */
+/* HEADER */
+
+#hi {
+    font-weight: normal;
+    font-size: 1.6rem;
+
+}
+
+.nav-btn-sel {
+    font-weight: normal;
+}
+
+header .container-fluid {
+    font-size: 3rem;
+    font-weight: normal;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#dropdownMenuLink {
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-menu {
+    transform: none !important;
+    background-color: rgb(75, 75, 75) !important;
+    padding: 0 !important;
+    border-radius: 0px 0px 0px 0px !important;
+    right: 0px !important;
+    border: none !important;
+    float: right !important;
+    left: auto !important;
+    margin: 0 !important;
+    top: auto !important;
+}
+
+.dropdown-item {
+    font-size: 1.6rem;
+    color: lightgray !important;
+    font-weight: bold !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(99, 99, 99) !important;
+    color: lightgray !important;
+}
+
+.dropdown-divider {
+    margin: 0 !important;
+}
+
+.line {
+    display: none; 
+}
+
+.name:hover ~ .line {
+    position: absolute;
+    display: block;
+    border: 1px solid rgb(75, 75, 75);
+    width: 162px;
+    right: 0;
+}
+
+
+/* HEADER */
+
