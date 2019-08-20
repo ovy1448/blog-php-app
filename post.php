@@ -9,11 +9,14 @@
 
   require('config/config.php');
   require('config/db.php');
+  require('cloudinary.php');
 
   if(isset($_POST['delete'])){
     $delete_id = mysqli_escape_string($conn, $_POST['delete_id']);
-    
-  $query = "DELETE FROM posts WHERE id = {$delete_id}";
+    $delete_image_id = mysqli_escape_string($conn, $_POST['delete_image_id']);
+
+    \Cloudinary\Uploader::destroy($delete_image_id);
+    $query = "DELETE FROM posts WHERE id = {$delete_id}";
 
       if(mysqli_query($conn, $query)){
           header('Location: '.ROOT_URL.'');
@@ -34,12 +37,14 @@
 <div class="main-container">
     <?php include('inc/header.php');?>
       <a href="<?php echo ROOT_URL; ?>">Back</a>
+      <?php echo cl_image_tag($post['image_id'])?> 
       <h1><?php echo $post['title']; ?></h1>
       <small>Created on <?php echo $post['created_at']; ?> by <?php echo $post['author']; ?></small>
       <p><?php echo $post['body']; ?></p>
       <hr>
       <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="pull-right">
         <input type="hidden" name="delete_id" value="<?php echo $post['id'];?>">
+        <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
         <input type="submit" name="delete" value="Delete" class="btn btn-danger">
       </form>
 

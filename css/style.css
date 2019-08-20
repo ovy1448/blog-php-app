@@ -123,17 +123,6 @@ footer {
     flex-shrink: 0;
 }
 
-.nav-btn, .nav-btn:link {
-    color: black;
-    text-decoration: none;
-}
-
-.nav-btn:hover {
-    color: black;
-    font-size: 2.9835rem;
-    font-weight: bold;
-}
-
 /* FOOTER */
 /* LOGREG */
 
@@ -169,34 +158,49 @@ footer {
 /* LOGREG */
 /* MAIN */
 
-.main-container {
+main {
     height: auto; 
     display: block;
     position: relative;
     flex: 1 0 auto;
 }
 
-.main-posts {
-    width: 150px;
-    height: 300px;
-    overflow: hidden;
-    background-color: lightgray;
-    width: 100% !important;
-    height: 200px;
+.main-post {
+    background-image: url('bg-footer.jpg');
+    background-size: cover;
+    background-position: bottom;
+    border: 3px solid lightgray;
+    border-radius: 5px;
+    width: 100%;
+    height: 410px;
     page-break-inside: avoid;
+    overflow: hidden;
 }
 
-#posts {
-    -webkit-column-count: 5;
-    -webkit-column-gap:   0px;
-    -moz-column-count:    5;
-    -moz-column-gap:      0px;
-    column-count:         5;
-    column-gap:           5px;  
+.main-post:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
 
+.main-body {
+    height: 200px;
+    overflow: hidden;
+    background-color: lightblue;
+}
+
+
+#main-container {
     border: 1px solid green;
+    margin: 15px 0 30px 0;
+}
 
-    margin-bottom: 15px;
+hr {
+    margin: 2px;
+}
+
+.post-img {
+    width: 100%;
+    height: auto;
 }
 
 /* MAIN */
@@ -263,6 +267,16 @@ header .container-fluid {
     right: 0;
 }
 
+.nav-btn, .nav-btn:link {
+    color: black;
+    text-decoration: none;
+}
+
+.nav-btn:hover {
+    color: black;
+    font-size: 2.9835rem;
+    font-weight: bold;
+}
 
 /* HEADER */
 
