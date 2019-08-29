@@ -26,9 +26,8 @@
 
 <?php include('inc/header.php');?> 
 <main class="container">
-  <div class="" id="main-container">
+  <div class="main-container" id="">
     <?php foreach($posts as $post) : ?>
-      
       <img class="post-img" src="<?php echo cloudinary_url($post['image_id'])?>" alt=""><br>
       <div class="main-post container">
         <span class="main-title"><?php echo $post['title']; ?></span><br><hr>

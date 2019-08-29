@@ -1,7 +1,5 @@
 <?php 
-
     session_start(); 
-    
     if (isset($_GET['logout'])) {
         session_destroy();
         unset($_SESSION['email']);
@@ -12,63 +10,64 @@
     require('config/db.php');
     require('cloudinary.php');
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['upload'])){
+        $currentDir = getcwd();
+        $uploadDirectory = "/uploads/";
 
-        if(!isset($_FILES['myfile']) || $_FILES['myfile']['error'] == UPLOAD_ERR_NO_FILE) {
-            $image_id = 0;
-        } else {
-            $currentDir = getcwd();
-            $uploadDirectory = "/uploads/";
+        $errors = []; 
 
-            $errors = []; // Store all foreseen and unforseen errors here
+        $fileExtensions = ['jpeg','jpg','png']; 
 
-            $fileExtensions = ['jpeg','jpg','png']; // Get all the file extensions
+        $fileName = $_FILES['myfile']['name'];
+        $fileSize = $_FILES['myfile']['size'];
+        $fileTmpName  = $_FILES['myfile']['tmp_name'];
+        $fileType = $_FILES['myfile']['type'];
+        $tmp           = explode('.', $fileName);
+        $fileExtension = end($tmp);
 
-            $fileName = $_FILES['myfile']['name'];
-            $fileSize = $_FILES['myfile']['size'];
-            $fileTmpName  = $_FILES['myfile']['tmp_name'];
-            $fileType = $_FILES['myfile']['type'];
-            $tmp           = explode('.', $fileName);
-            $fileExtension = end($tmp);
+        $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
+        $targetPath = "uploads/" . $_FILES['myfile']['name'];
 
-            $uploadPath = $currentDir . $uploadDirectory . basename($fileName);
-
-            if (! in_array($fileExtension,$fileExtensions)) {
-                $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
-            }
-
-            if ($fileSize > 2000000) {
-                $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB";
-            }
-
-            if (empty($errors)) {
-                $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
-            
-                if ($didUpload) {
-                    echo "The file " . basename($fileName) . " has been uploaded";
-                } else {
-                    echo "An error occurred somewhere. Try again or contact the admin";
-                }
-            } else {
-                foreach ($errors as $error) {
-                    echo $error . "These are the errors" . "\n";
-                }
-            }
-            $image_id = \Cloudinary\Uploader::upload($uploadPath)["public_id"];
+        if (! in_array($fileExtension,$fileExtensions)) {
+            $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
         }
+
+        if ($fileSize > 2000000) {
+            $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB";
+        }
+
+        if (empty($errors)) {
+            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
         
+            if ($didUpload) {
+                $_SESSION['target_path'] = $uploadPath;
+                /* echo "The file " . basename($fileName) . " has been uploaded"; */
+            } else {
+                echo "An error occurred somewhere. Try again or contact the admin";
+            }
+        } else {
+            foreach ($errors as $error) {
+                echo $error . "These are the errors" . "\n";
+            }
+        }
+    }
+
+    if(isset($_POST['submit'])){
+        if(isset($_SESSION['target_path'])){
+            $image_id = \Cloudinary\Uploader::upload($_SESSION['target_path'])["public_id"];
+        } else {
+            $image_id = 0;
+        }
 
         $title = mysqli_escape_string($conn, $_POST['title']);
         $body = mysqli_escape_string($conn, $_POST['body']);
         $author = mysqli_escape_string($conn, $_POST['author']);
-        
 
         $query = "INSERT INTO posts(title, author, body, image_id) VALUES('$title', '$author', '$body', '$image_id')";
 
-        
-
         if(mysqli_query($conn, $query)){
-            /* echo cl_image_tag("sh6rw8cnulqnitsaayah"); */
+            unlink("uploads/" . basename($_SESSION['target_path']));
+            unset($_SESSION["target_path"]);
             header('Location: '.ROOT_URL.'');
         } else {
             echo 'ERROR'. mysqli_error($conn);
@@ -76,15 +75,25 @@
     }
 ?>
 
-
 <?php include('inc/header.php');?> 
 <main class="main-container">
   <div class="container" id="">
     <h1>Add Post</h1>
     <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
+        <div class="form-group post-img">
             <label for="">Upload Picture</label><br>
-            <input type="file" name="myfile" id="fileToUpload">
+            <input type="file" name="myfile" id="userImage" class="inputFile">
+
+            <input type="submit" name="upload" value="Upload" class="btnSubmit">
+            <div id="pre-crop-image">
+            <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/> <?php }} ?>
+            </div>
+            <div id="btn">
+                <input type='button' id="crop" value='CROP'>
+            </div>
+            <div>
+                <img src="#" id="cropped_img" style="display: none;">
+            </div>
         </div>
         <div class="form-group">
             <label for="">Title</label>
@@ -101,7 +110,30 @@
         <input type="submit" name="submit" value="Submit" class="btn btn-primary">
     </form>
   </div>
-  
 </main>
 <?php include('inc/footer.php');?>  
+<script type="text/javascript">
+    $(document).ready(function(){
+        var size;
+        $('#cropbox').Jcrop({
+        setSelect: [0,200,0,0],
+        aspectRatio: 3/1,
+        
+        onSelect: function(c){
+        size = {x:c.x,y:c.y,w:c.w,h:c.h};
+
+        $("#crop").css("visibility", "visible");     
+        }
+        });
+    
+        $("#crop").click(function(){
+            var img = $("#cropbox").attr('src');
+            
+            $("#cropped_img").show();
+            $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
+            $("#pre-crop-image").hide();
+            $("#crop").hide();
+        });
+    });
+</script>
 

@@ -7,7 +7,11 @@
     <title>PHP Blog</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="jquery.Jcrop.min.css" type="text/css" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery.Jcrop.min.js"></script>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
+    
 </head>
 <body>
     <header>
