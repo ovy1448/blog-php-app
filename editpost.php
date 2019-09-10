@@ -32,8 +32,8 @@
         $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
     }
 
-    if ($fileSize > 2000000) {
-        $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB";
+    if ($fileSize > 5000000) {
+        $errors[] = "This file is more than 5MB. Sorry, it has to be less than or equal to 5MB";
     }
 
     if (empty($errors)) {
@@ -41,7 +41,6 @@
     
         if ($didUpload) {
             $_SESSION['target_path'] = $uploadPath;
-            /* echo "The file " . basename($fileName) . " has been uploaded"; */
         } else {
             echo "An error occurred somewhere. Try again or contact the admin";
         }
@@ -50,22 +49,23 @@
             echo $error . "These are the errors" . "\n";
         }
     }
-}
+    }
 
     if(isset($_POST['submit'])){
+        $delete_image_id = mysqli_escape_string($conn, $_POST['delete_image_id']);
+        $update_id = mysqli_escape_string($conn, $_POST['update_id']);
+        $title = strtoupper(mysqli_escape_string($conn, $_POST['title']));
+        $body = mysqli_escape_string($conn, $_POST['body']);
+        $author = $_SESSION['email'];
+
         if(isset($_SESSION['target_path'])){
             $image_id = \Cloudinary\Uploader::upload($_SESSION['target_path'])["public_id"];
         } else {
-            $image_id = 0;
+            $image_id = $delete_image_id;
         }
 
-        $delete_image_id = mysqli_escape_string($conn, $_POST['delete_image_id']);
-        $update_id = mysqli_escape_string($conn, $_POST['update_id']);
-        $title = mysqli_escape_string($conn, $_POST['title']);
-        $body = mysqli_escape_string($conn, $_POST['body']);
-        $author = mysqli_escape_string($conn, $_POST['author']);
+        
 
-        /* $query = "INSERT INTO posts(title, author, body, image_id) VALUES('$title', '$author', '$body', '$image_id')"; */
         $query = "UPDATE posts SET
                 title='$title',
                 author='$author',
@@ -93,7 +93,7 @@
 
 
 <?php include('inc/header.php');?> 
-<main class="main-container">
+<main>
   <div class="container" id="">
     <h1>Edit Post</h1>
     <form action="" method="POST" enctype="multipart/form-data">
@@ -121,12 +121,8 @@
             <input type="text" name="title" class="form-control" value="<?php echo $post['title'];?>">
         </div>
         <div class="form-group">
-            <label for="">Author</label>
-            <input type="text" name="author" class="form-control" value="<?php echo $post['author'];?>">
-        </div>
-        <div class="form-group">
             <label for="">Body</label>
-            <textarea name="body" class="form-control"><?php echo $post['body'];?></textarea>
+            <textarea name="body" id="editor1" class="form-control"><?php echo $post['body'];?></textarea>
         </div>
         <input type="hidden" name="update_id" value="<?php echo $post['id'];?>">
         <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
@@ -138,10 +134,11 @@
 <?php include('inc/footer.php');?>
 <script type="text/javascript">
     $(document).ready(function(){
+        CKEDITOR.replace( 'editor1' );
         var size;
         $('#cropbox').Jcrop({
         setSelect: [0,200,0,0],
-        aspectRatio: 3/1,
+        aspectRatio: 16/9,
         
         onSelect: function(c){
         size = {x:c.x,y:c.y,w:c.w,h:c.h};

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="jquery.Jcrop.min.css" type="text/css" />
     <script src="jquery.min.js"></script>
     <script src="jquery.Jcrop.min.js"></script>
+    <script src="ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
     
 </head>

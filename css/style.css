@@ -163,39 +163,29 @@ main {
     display: block;
     position: relative;
     flex: 1 0 auto;
-}
-
-.main-post {
-    background-image: url('bg-footer.jpg');
-    background-size: cover;
-    background-position: bottom;
-    border: 3px solid lightgray;
-    border-radius: 5px;
-    width: 100%;
-    height: 410px;
-    page-break-inside: avoid;
-    overflow: hidden;
-}
-
-.main-post:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
-
-.main-body {
-    height: 200px;
-    overflow: hidden;
-    background-color: lightblue;
-}
-
-
-.main-container {
-    border: 1px solid green;
+    /* border: 1px solid green; */
     margin: 15px auto 30px auto;
 }
 
-hr {
-    margin: 2px;
+#cropbox {
+    border: 1px solid green;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+
+
+.main-post:nth-child(odd){
+    padding-right: 8px;
+}
+
+.main-post:nth-child(even){
+    padding-left: 8px;
+}
+
+.main-post:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
 
 .post-img {
@@ -204,8 +194,72 @@ hr {
     height: auto;
 }
 
-#cropbox {
-    border: 1px solid green;
+.main-author {
+    font-size: 0.9rem;
+    line-height: 2;
+}
+
+.main-post {
+    padding: 0;
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+hr {
+    margin: 0;
+}
+
+.main-post a {
+    text-decoration: none;
+}
+
+.main-body {
+    padding-top: 5px;
+    height: 100%;
+}
+
+.main-container .container{
+    padding-top: 5px !important;
+}
+
+.main-container {
+    min-height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.1rem;
+    color: darkgray;
+    height: 632px;    
+    overflow: hidden;
+    border-bottom: 10px solid transparent;
+}
+
+.main-container .container {
+    padding-top: 15px;
+} 
+
+@media screen and (max-width: 1199px) {
+    .main-container {
+        height: 531px; 
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .main-container {
+        height: 396px; 
+    }
+}
+
+@media screen and (max-width: 784px) {
+    .main-container {
+        height: 607.5px; 
+    }
+    
+    .main-post:nth-child(odd){
+        padding-right: 0px;
+    }
+    
+    .main-post:nth-child(even){
+        padding-left: 0px;
+    }
 }
 
 /* MAIN */

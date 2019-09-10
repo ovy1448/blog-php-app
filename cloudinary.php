@@ -1,9 +1,9 @@
 <?php
-    require 'src/Cloudinary.php';
-    require 'src/Uploader.php';
-    require 'src/Helpers.php';
-    require 'src/Api.php';
-    require 'src/Error.php';
+    require 'cloudinary/Cloudinary.php';
+    require 'cloudinary/Uploader.php';
+    require 'cloudinary/Helpers.php';
+    require 'cloudinary/Api.php';
+    require 'cloudinary/Error.php';
 
     \Cloudinary::config(array(
         "cloud_name" => "dzs9c60j6",

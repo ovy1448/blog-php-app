@@ -32,8 +32,8 @@
             $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
         }
 
-        if ($fileSize > 2000000) {
-            $errors[] = "This file is more than 2MB. Sorry, it has to be less than or equal to 2MB";
+        if ($fileSize > 5000000) {
+            $errors[] = "This file is more than 5MB. Sorry, it has to be less than or equal to 5MB";
         }
 
         if (empty($errors)) {
@@ -41,7 +41,6 @@
         
             if ($didUpload) {
                 $_SESSION['target_path'] = $uploadPath;
-                /* echo "The file " . basename($fileName) . " has been uploaded"; */
             } else {
                 echo "An error occurred somewhere. Try again or contact the admin";
             }
@@ -59,9 +58,9 @@
             $image_id = 0;
         }
 
-        $title = mysqli_escape_string($conn, $_POST['title']);
+        $title = strtoupper(mysqli_escape_string($conn, $_POST['title']));
         $body = mysqli_escape_string($conn, $_POST['body']);
-        $author = mysqli_escape_string($conn, $_POST['author']);
+        $author = $_SESSION['email'];
 
         $query = "INSERT INTO posts(title, author, body, image_id) VALUES('$title', '$author', '$body', '$image_id')";
 
@@ -76,17 +75,16 @@
 ?>
 
 <?php include('inc/header.php');?> 
-<main class="main-container">
-  <div class="container" id="">
+<main>
+  <div class="container">
     <h1>Add Post</h1>
     <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
         <div class="form-group post-img">
             <label for="">Upload Picture</label><br>
             <input type="file" name="myfile" id="userImage" class="inputFile">
-
             <input type="submit" name="upload" value="Upload" class="btnSubmit">
             <div id="pre-crop-image">
-            <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/> <?php }} ?>
+                <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/> <?php }} ?>
             </div>
             <div id="btn">
                 <input type='button' id="crop" value='CROP'>
@@ -100,12 +98,8 @@
             <input type="text" name="title" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Author</label>
-            <input type="text" name="author" class="form-control">
-        </div>
-        <div class="form-group">
             <label for="">Body</label>
-            <textarea name="body" class="form-control"></textarea>
+            <textarea name="body" id="editor1" class="form-control"></textarea>
         </div>
         <input type="submit" name="submit" value="Submit" class="btn btn-primary">
     </form>
@@ -114,16 +108,17 @@
 <?php include('inc/footer.php');?>  
 <script type="text/javascript">
     $(document).ready(function(){
+        CKEDITOR.replace( 'editor1' );
         var size;
         $('#cropbox').Jcrop({
-        setSelect: [0,200,0,0],
-        aspectRatio: 3/1,
-        
-        onSelect: function(c){
-        size = {x:c.x,y:c.y,w:c.w,h:c.h};
+            setSelect: [0,200,0,0],
+            aspectRatio: 16/9,
+            
+            onSelect: function(c){
+                size = {x:c.x,y:c.y,w:c.w,h:c.h};
 
-        $("#crop").css("visibility", "visible");     
-        }
+                $("#crop").css("visibility", "visible");     
+            }
         });
     
         $("#crop").click(function(){
