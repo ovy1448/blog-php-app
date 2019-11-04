@@ -1,3 +1,32 @@
+<?php
+require('config/db.php');
+
+$email    = "";
+$errors = array(); 
+
+if (isset($_POST['news_user'])) {
+  $email = mysqli_real_escape_string($conn, $_POST['email']);
+
+  if (empty($email)) { array_push($errors, "Email is required"); }
+
+  $email_check_query = "SELECT * FROM `newsletter` WHERE email='$email' LIMIT 1";
+  $results = mysqli_query($conn, $email_check_query);
+  $user = mysqli_fetch_assoc($results);
+  
+  if ($user) {
+    if ($user['email'] === $email) {
+      array_push($errors, "Email already exists");
+    }
+  }
+
+  if (count($errors) == 0) {
+
+  	$query = "INSERT INTO `newsletter` (email) 
+  			  VALUES('$email')";
+  	mysqli_query($conn, $query);
+  }
+}
+?>
         <footer>
             <div class="container-fluid">
                 <div id="footer" class="row">
@@ -10,7 +39,9 @@
                     <div class="col text-left">
                         <span id="newsletter-text">Newsletter</span><br>
                         Sign up to our newsletter and stay up to date.<br>
-                        <input type="email" name="" id="newsletter-input" placeholder="Enter Your Email"><i class="arrow"></i><br>
+                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                            <input type="email" name="email" id="newsletter-input" placeholder="Enter Your Email"><button type="submit" class="news_btn" name="news_user"><i class="arrow"></i></button><br>
+                        </form>
                         <a href="https://facebook.com" target="_blank" class="fab fa-facebook-square fa-3x"></a>
                         <a href="https://github.com" target="_blank" class="fab fa-github-square fa-3x"></a>
                         <a href="https://www.linkedin.com/" target="_blank" class="fab fa-linkedin fa-3x"></a>

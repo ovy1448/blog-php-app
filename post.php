@@ -41,7 +41,7 @@
     <small>Created on <?php echo $post['created_at']; ?> by <?php echo $post['author']; ?></small>
     <p><?php echo $post['body']; ?></p>
     <hr>
-    <?php if(isset($_SESSION['email'])){if ($post['author'] == $_SESSION['email']) {?>
+    <?php if(isset($_SESSION['email'])){if ($post['author'] == $_SESSION['email'] || $_SESSION['email'] == "admin") {?>
       <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="pull-right">
       <input type="hidden" name="delete_id" value="<?php echo $post['id'];?>">
       <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
