@@ -38,7 +38,6 @@
     <?php endforeach; ?>
   </div>
 </main>
-<?php include('inc/footer.php');?>  
 <script type="text/javascript">
   $(window).on('resize load',function(){
     if ($(window).width()<768){
@@ -49,4 +48,6 @@
     } 
   });
 </script>
+<?php include('inc/footer.php');?>  
+
 

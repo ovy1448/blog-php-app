@@ -131,7 +131,6 @@
   </div>
   
 </main>
-<?php include('inc/footer.php');?>
 <script type="text/javascript">
     $(document).ready(function(){
         CKEDITOR.replace( 'editor1' );
@@ -164,4 +163,6 @@
         })
     });
 </script>
+<?php include('inc/footer.php');?>
+
 

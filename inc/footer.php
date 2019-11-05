@@ -39,7 +39,7 @@ if (isset($_POST['news_user'])) {
                     <div class="col text-left">
                         <span id="newsletter-text">Newsletter</span><br>
                         Sign up to our newsletter and stay up to date.<br>
-                        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                        <form method="post" action="<?php echo ROOT_URL;?>post.php?id=<?php echo $post['id'];?>">
                             <input type="email" name="email" id="newsletter-input" placeholder="Enter Your Email"><button type="submit" class="news_btn" name="news_user"><i class="arrow"></i></button><br>
                         </form>
                         <a href="https://facebook.com" target="_blank" class="fab fa-facebook-square fa-3x"></a>
