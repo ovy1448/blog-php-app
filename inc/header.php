@@ -12,7 +12,7 @@
     <script src="jquery.Jcrop.min.js"></script>
     <script src="ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="css/style.css?<?php echo time(); ?>">
-    
+    <script>function imgexist(){$(".over").addClass("overlay");}</script>
 </head>
 <body>
     <header>
@@ -34,7 +34,7 @@
                                     <div class="line"></div>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                         <a class="dropdown-item" id="add_post" href="addpost.php">Add Post</a>
-                                        <a class="dropdown-item" id="my_posts" href="allposts.php">My Posts</a>
+                                        <a class="dropdown-item" id="my_posts" href="myposts.php">My Posts</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" id="logout" href="index.php?logout=1">Logout</a>
                                     </div>

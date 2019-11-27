@@ -11,7 +11,7 @@
   require('config/db.php');
   require('cloudinary.php');
 
-  $query = 'SELECT * FROM posts ORDER BY created_at DESC';
+  $query = "SELECT * FROM posts WHERE author = '".$_SESSION["email"]."'ORDER BY created_at DESC";
   $result = mysqli_query($conn, $query);
   $posts = mysqli_fetch_all($result, MYSQLI_ASSOC);
   mysqli_free_result($result);
@@ -19,6 +19,7 @@
 ?>
 
 <?php include('inc/header.php');?> 
+
 <main class="container">
   <div class="row">
     <?php foreach($posts as $post) : ?>
@@ -37,6 +38,7 @@
     <?php endforeach; ?>
   </div>
 </main>
+
 <script type="text/javascript">
   $(window).on('resize load',function(){
     if ($(window).width()<768){
@@ -47,6 +49,4 @@
     } 
   });
 </script>
-<?php include('inc/footer.php');?>  
-
-
+<?php include('inc/footer.php');?>

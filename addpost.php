@@ -74,34 +74,46 @@
     }
 ?>
 
-<?php include('inc/header.php');?> 
-<main>
-  <div class="container">
-    <h1>Add Post</h1>
+<?php include('inc/header.php');?>
+<div class="over"></div>
+<main class="add-main">
+  <div>
+    <h1 class="add-edit-text">Add Post</h1>
     <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
         <div class="form-group post-img">
-            <label for="">Upload Picture</label><br>
-            <input type="file" name="myfile" id="userImage" class="inputFile">
-            <input type="submit" name="upload" value="Upload" class="btnSubmit">
-            <div id="pre-crop-image">
-                <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/> <?php }} ?>
-            </div>
-            <div id="btn">
-                <input type='button' id="crop" value='CROP'>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" name="myfile" id="userImage" class="custom-file-input inputFile" aria-describedby="inputGroupFileAddon01">
+                    <label class="file-input custom-file-label" for="inputGroupFile01"><?php if(isset($_POST['upload'])){echo $fileName;} else {echo "Choose image";};?></label>
+                </div>
             </div>
             <div>
-                <img src="#" id="cropped_img" style="display: none;">
+                <input type="submit" name="upload" value="Upload" class="btnSubmit">
+            </div>
+            <div id="pre-crop-image">
+                <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/>
+                    <script type="text/javascript">
+                        imgexist();
+                    </script>
+                    <?php }} ?>
+            </div>
+            <div id="btn">
+                <?php if (! empty($_POST["upload"])) {if($targetPath){?><input type='button' id="crop" value='CROP' class="crop btn btn-primary"><?php }} ?>
+            </div>
+            <div>
+                <img src="#" class="cropped_img" id="cropped_img" style="display: none;">
             </div>
         </div>
-        <div class="form-group">
-            <label for="">Title</label>
+        <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+            </div>
             <input type="text" name="title" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Body</label>
             <textarea name="body" id="editor1" class="form-control"></textarea>
         </div>
-        <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" name="submit" value="Submit" class="btn-submit btn btn-primary">
     </form>
   </div>
 </main>
@@ -110,23 +122,39 @@
         CKEDITOR.replace( 'editor1' );
         var size;
         $('#cropbox').Jcrop({
-            setSelect: [0,200,0,0],
+            setSelect: [2000,0,0,0],
             aspectRatio: 16/9,
+            boxWidth: 800,
             
             onSelect: function(c){
                 size = {x:c.x,y:c.y,w:c.w,h:c.h};
-
-                $("#crop").css("visibility", "visible");     
             }
         });
     
         $("#crop").click(function(){
             var img = $("#cropbox").attr('src');
             
+            $(".over").removeClass("overlay");
             $("#cropped_img").show();
             $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
             $("#pre-crop-image").hide();
             $("#crop").hide();
+            $(".add-main").addClass("container");
+        });
+
+        $("#userImage").on('change',function(){
+            $(".file-input").empty();
+            $(".file-input").append($('.inputFile').val().split('\\').pop());
+            $(".btnSubmit").click();
+        });
+        $("#userImage").on('click',function(){
+            $(".over").addClass("overlay");
+        }); 
+        /* $("#userImage").on('focusout',function(){
+            $(".over").removeClass("overlay");
+        });  */
+        $(window).focus(function() {
+            $(".over").removeClass("overlay");
         });
     });
 </script>

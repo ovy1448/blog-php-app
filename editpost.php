@@ -91,76 +91,93 @@
   mysqli_close($conn);
 ?>
 
-
 <?php include('inc/header.php');?> 
+<div class="over"></div>
 <main>
-  <div class="container" id="">
-    <h1>Edit Post</h1>
-    <form action="" method="POST" enctype="multipart/form-data">
-        
+  <div>
+    <h1 class="add-edit-text">Edit Post</h1>
+    <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
         <div class="form-group post-img">
-            <label for="">Upload Picture</label><br>
-            <input type="file" name="myfile" id="userImage" class="inputFile">
-
-            <input type="submit" name="upload" value="Upload" id="hide" class="btnSubmit">
-            <div id="first-crop-image">
-            <?php if ( $post['image_id']==0) {if(!isset($targetPath)){?><img class="post-img" src="<?php echo cloudinary_url($post['image_id'])?>" alt=""><br> <?php }} ?>
-            </div>
-            <div id="pre-crop-image">
-            <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/> <?php }} ?>
-            </div>
-            <div id="btn">
-                <input type='button' id="crop" value='CROP'>
+            <div class="input-group mb-3">
+                <div class="custom-file">
+                    <input type="file" name="myfile" id="userImage" class="custom-file-input inputFile" aria-describedby="inputGroupFileAddon01">
+                    <label class="file-input custom-file-label" for="inputGroupFile01"><?php if(isset($_POST['upload'])){echo $fileName;} else {echo "Choose image";};?></label>
+                </div>
             </div>
             <div>
-                <img src="#" id="cropped_img" style="display: none;">
+                <input type="submit" name="upload" value="Upload" class="btnSubmit">
+            </div>
+            <div id="first-crop-image">
+                <?php if ( $post['image_id']==0) {if(!isset($targetPath)){?><img class="post-img" src="<?php echo cloudinary_url($post['image_id'])?>" alt=""><br> <?php }} ?>
+            </div><br>
+            <div id="pre-crop-image">
+                <?php if (! empty($_POST["upload"])) {if($targetPath){?><img src="<?php echo $targetPath; ?>" id="cropbox"/><br/>
+                    <script type="text/javascript">
+                        imgexist();
+                    </script>
+                <?php }} ?>
+            </div>
+            <div id="btn">
+                <?php if (! empty($_POST["upload"])) {if($targetPath){?><input type='button' id="crop" value='CROP' class="crop btn btn-primary"><?php }} ?>
+            </div>
+            <div>
+                <img src="#" class="cropped_img" id="cropped_img" style="display: none;">
             </div>
         </div>
-        <div class="form-group">
-            <label for="">Title</label>
+        <div class="form-group input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Title</span>
+            </div>
             <input type="text" name="title" class="form-control" value="<?php echo $post['title'];?>">
         </div>
         <div class="form-group">
-            <label for="">Body</label>
             <textarea name="body" id="editor1" class="form-control"><?php echo $post['body'];?></textarea>
         </div>
         <input type="hidden" name="update_id" value="<?php echo $post['id'];?>">
         <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
-        <input type="submit" name="submit" value="Submit" class="btn btn-primary">
+        <input type="submit" name="submit" value="Submit" class="btn-submit btn btn-primary">
     </form>
   </div>
-  
 </main>
 <script type="text/javascript">
     $(document).ready(function(){
         CKEDITOR.replace( 'editor1' );
         var size;
         $('#cropbox').Jcrop({
-        setSelect: [0,200,0,0],
-        aspectRatio: 16/9,
-        
-        onSelect: function(c){
-        size = {x:c.x,y:c.y,w:c.w,h:c.h};
-
-        $("#crop").css("visibility", "visible");     
-        }
+            setSelect: [2000,0,0,0],
+            aspectRatio: 16/9,
+            boxWidth: 800,
+            
+            onSelect: function(c){
+                size = {x:c.x,y:c.y,w:c.w,h:c.h};
+            }
         });
-
-
     
         $("#crop").click(function(){
             var img = $("#cropbox").attr('src');
             
+            $(".over").removeClass("overlay");
             $("#cropped_img").show();
             $("#cropped_img").attr('src','image-crop.php?x='+size.x+'&y='+size.y+'&w='+size.w+'&h='+size.h+'&img='+img);
             $("#pre-crop-image").hide();
             $("#crop").hide();
+            $(".add-main").addClass("container");
         });
 
-        $("#hide").click(function(e){
-            $("#first-crop-image").hide();
-            
-        })
+        $("#userImage").on('change',function(){
+            $(".file-input").empty();
+            $(".file-input").append($('.inputFile').val().split('\\').pop());
+            $(".btnSubmit").click();
+        });
+        $("#userImage").on('click',function(){
+            $(".over").addClass("overlay");
+        }); 
+        /* $("#userImage").on('focusout',function(){
+            $(".over").removeClass("overlay");
+        });  */
+        $(window).focus(function() {
+            $(".over").removeClass("overlay");
+        });
     });
 </script>
 <?php include('inc/footer.php');?>
