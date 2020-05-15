@@ -35,27 +35,27 @@
 
 
 <?php include('inc/header.php');?>
-<div class="post-layer container">
-  <?php if ( !$post['image_id']==0) {?><div class="layer"></div><?php } ?>
-  <img class="post-img" src="<?php echo cloudinary_url($post['image_id'])?>" alt="">
-</div>
-<div class="post-container container">
-  <br>
-  <div class="main-title text-center">
-    <h1><?php echo $post['title']; ?></h1><hr>
-    <span class="main-author">Created on <?php echo date('j M Y', strtotime($post['created_at'])); ?> by <?php echo $post['author']; ?></span><hr>
+<main class="post-layer container">
+    <?php if ( !$post['image_id']==0) {?><div class="layer"></div><?php } ?>
+    <img class="post-img" src="<?php echo cloudinary_url($post['image_id'])?>" alt="">
   </div>
-  <?php if(isset($_SESSION['email'])){if ($post['author'] == $_SESSION['email'] || $_SESSION['email'] == "admin") {?>
-  <div class="post-btn-div">
-    <a href="<?php echo ROOT_URL;?>editpost.php?id=<?php echo $post['id'];?>" class="fas fa-edit"></a>
-    <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="post-btn pull-right">
-      <input type="hidden" name="delete_id" value="<?php echo $post['id'];?>">
-      <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
-      <button type="submit" name="delete" value="Delete" class="dlt-btn"><i class="far fa-trash-alt"></i></button>
-    </form>
-  </div><?php }} ?>
-  <p><?php echo $post['body']; ?></p>
-</div>
+  <div class="post-container container">
+    <br>
+    <div class="main-title text-center">
+      <h1><?php echo $post['title']; ?></h1><hr>
+      <span class="main-author">Created on <?php echo date('j M Y', strtotime($post['created_at'])); ?> by <?php echo $post['author']; ?></span><hr>
+    </div>
+    <?php if(isset($_SESSION['email'])){if ($post['author'] == $_SESSION['email'] || $_SESSION['email'] == "admin") {?>
+    <div class="post-btn-div">
+      <a href="<?php echo ROOT_URL;?>editpost.php?id=<?php echo $post['id'];?>" class="fas fa-edit"></a>
+      <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" class="post-btn pull-right">
+        <input type="hidden" name="delete_id" value="<?php echo $post['id'];?>">
+        <input type="hidden" name="delete_image_id" value="<?php echo $post['image_id'];?>">
+        <button type="submit" name="delete" value="Delete" class="dlt-btn"><i class="far fa-trash-alt"></i></button>
+      </form>
+    </div><?php }} ?>
+    <p><?php echo $post['body']; ?></p>
+</main>
 <script type="text/javascript">
   $(window).on('resize load',function(){
     if ($(window).width()<575){

@@ -76,7 +76,7 @@
 
 <?php include('inc/header.php');?>
 <div class="over"></div>
-<main class="add-main">
+<main class="add-main post-layer">
   <div>
     <h1 class="add-edit-text">Add Post</h1>
     <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST" enctype="multipart/form-data">
@@ -101,6 +101,8 @@
                 <?php if (! empty($_POST["upload"])) {if($targetPath){?><input type='button' id="crop" value='CROP' class="crop btn btn-primary"><?php }} ?>
             </div>
             <div>
+                <div class="pre-layer"></div>
+                
                 <img src="#" class="cropped_img" id="cropped_img" style="display: none;">
             </div>
         </div>
@@ -140,6 +142,7 @@
             $("#pre-crop-image").hide();
             $("#crop").hide();
             $(".add-main").addClass("container");
+            $('.pre-layer').addClass('layer');
         });
 
         $("#userImage").on('change',function(){

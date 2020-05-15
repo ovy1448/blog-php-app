@@ -425,7 +425,6 @@ header .container-fluid {
     width: 1108px;
     padding-bottom: 15px;
     margin: 0 auto;
-    
 }
 
 .post-img {
@@ -434,6 +433,10 @@ header .container-fluid {
 
 .btnSubmit {
     display: none;
+}
+
+.post-layer {
+    position: static;
 }
 
 @media screen and (max-width: 1199px) {
@@ -468,6 +471,20 @@ header .container-fluid {
     border-color: rgb(206, 212, 218);
 }
 
+.dlt-btn-edit {
+    
+    background-color: pink;
+    border-color: rgb(206, 212, 218);
+    color: red;
+}
+
+.dlt-btn-edit:hover {
+    color: red;
+    background-color: none;
+    border: 1px solid transparent;
+    background: none;
+}
+
 .add-edit-text {
     color: rgb(206, 212, 218);
     
@@ -485,6 +502,17 @@ header .container-fluid {
     background: rgba(0, 0, 0, 0.5);
     
 }
+
+#basic-addon1 {
+    width: 77px;
+    text-align: center;
+    display: block;
+}
+
+.form-control:focus, .custom-file-input:hover {
+    border-color: lightgray;
+    box-shadow: none;
+  }
 
 .crop {
     position: absolute;
@@ -518,4 +546,10 @@ header .container-fluid {
     margin-right: auto;
 }
 
+#first-crop-image {
+    margin-bottom:  15px;
+
+}
+
 /* ADDEDIT */
+
