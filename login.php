@@ -39,7 +39,7 @@ if (isset($_POST['login_user'])) {
   ?>
 
 <form class="log-reg-form" method="post" action="login.php">
-    <?php include('errors.php');?>
+    <?php include('./errors.php');?>
     <div class="form-group">
         <input type="email" class="form-control" name="email" placeholder="email">
     </div>

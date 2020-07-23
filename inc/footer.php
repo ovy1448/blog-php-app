@@ -23,7 +23,7 @@ if (isset($_POST['news_user'])) {
 
   	$query = "INSERT INTO `newsletter` (email) 
   			  VALUES('$email')";
-  	mysqli_query($conn, $query);
+    mysqli_query($conn, $query);
   }
 }
 ?>

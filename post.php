@@ -9,7 +9,7 @@
 
   require('config/config.php');
   require('config/db.php');
-  require('cloudinary.php');
+  require('./cloudinary/cloudinary.php');
 
   if(isset($_POST['delete'])){
     $delete_id = mysqli_escape_string($conn, $_POST['delete_id']);

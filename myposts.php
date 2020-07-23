@@ -9,7 +9,7 @@
 
   require('config/config.php');
   require('config/db.php');
-  require('cloudinary.php');
+  require('./cloudinary/cloudinary.php');
 
   $query = "SELECT * FROM posts WHERE author = '".$_SESSION["email"]."'ORDER BY created_at DESC";
   $result = mysqli_query($conn, $query);

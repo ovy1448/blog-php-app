@@ -8,7 +8,7 @@
 
     require('config/config.php');
     require('config/db.php');
-    require('cloudinary.php');
+    require('./cloudinary/cloudinary.php');
 
     if(isset($_POST['upload'])){
         $currentDir = getcwd();
